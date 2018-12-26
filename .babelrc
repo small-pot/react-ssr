@@ -1,0 +1,25 @@
+{
+  "plugins": [
+    "dynamic-import-node",
+    "react-loadable/babel",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-runtime",
+    ["module-resolver", {
+      "alias": {
+        "@":"./source",
+        "SERVERHTTP": "./tools/serverHttp.js",
+        "HTTP": "./source/utils/http.js"
+      }
+    }],
+    ["import", {
+      "libraryName": "antd",
+      "libraryDirectory": "es",
+      "style": "true"
+    }]
+  ],
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "comments": false
+}
