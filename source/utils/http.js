@@ -15,7 +15,7 @@ const http=axios.create({
   ]
 })
 function getRequestUrl(url) {
-    if(process.env.NODE_ENV!=='server') return url;
+    if(process.env.REACT!=='server') return url;
     if(/^\/API/.test(url)){
         return 'http://192.168.20.151:9000'+url
     }

@@ -43,7 +43,8 @@ const webpackConfig = merge(baseWebpackConfig,{
     externals: [nodeExternals()],  // 不绑定node模块，保留为 require()
     plugins: [
         new webpack.DefinePlugin({
-            "process.env.NODE_ENV": JSON.stringify("server")  // 指定React环境为服务端
+            "process.env.NODE_ENV": JSON.stringify("production"),
+            "process.env.REACT": JSON.stringify("server")
         }),
         // 服务端不支持window document等对象，需将css外链
         new MiniCssExtractPlugin({

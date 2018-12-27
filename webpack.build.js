@@ -35,7 +35,8 @@ const buildConfig=merge(config,{
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('production')
+            'process.env.NODE_ENV': JSON.stringify('production'),
+            "process.env.REACT": JSON.stringify("client")
         }),
         new MiniCssExtractPlugin({
             filename: "css/[name].[contenthash].css"
