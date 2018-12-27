@@ -3,9 +3,9 @@ import ReactDom from 'react-dom'
 import { BrowserRouter } from "react-router-dom";
 import Loadable from 'react-loadable';
 import Routes from './router/routes'
-import './index.less'
 import {Provider} from 'react-redux'
 import 'antd/dist/antd.less'
+import './index.less'
 import createEntry from './createEntry'
 const pathName=location.pathname;
 const App=({store})=>{

@@ -1,5 +1,5 @@
 //server端请求
-import serverHttp from 'SERVERHTTP'
+import serverHttp from '#/serverHttp'
 import {timeFormat} from "../../utils/tools";
 
 export default async function (req) {

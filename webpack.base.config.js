@@ -32,7 +32,6 @@ module.exports = {
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'source'),
-            'SERVERHTTP': path.resolve(__dirname, 'tools/serverHttp.js'),
             "#":path.resolve(__dirname, 'source/utils'),
         }
     },

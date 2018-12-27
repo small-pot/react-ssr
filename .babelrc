@@ -7,8 +7,7 @@
     ["module-resolver", {
       "alias": {
         "@":"./source",
-        "SERVERHTTP": "./tools/serverHttp.js",
-        "HTTP": "./source/utils/http.js"
+        "#": "./source/utils"
       }
     }],
     ["import", {

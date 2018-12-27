@@ -15,14 +15,12 @@ class Hello extends React.Component{
     }
     constructor(props){
         super(props)
-        if(process.env.NODE_ENV!=='server'){
-            http({
-                method:'get',
-                url:'/getTime.htm'
-            }).then(res=>{
-                console.log(88888,res)
-            })
-        }
+        http({
+            method:'get',
+            url:'/API/Attendance/getTime.htm'
+        }).then(res=>{
+            console.log(88888,res)
+        })
     }
     componentDidMount(){
         this.history=createHashHistory()

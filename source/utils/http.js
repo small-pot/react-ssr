@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const http=axios.create({
   timeout:3000,
-  baseURL:'/API/Attendance',
   headers:{'Content-Type': 'application/x-www-form-urlencoded'},
   transformRequest:[
     function (data) {
@@ -15,6 +14,17 @@ const http=axios.create({
     }
   ]
 })
+function getRequestUrl(url) {
+    if(process.env.NODE_ENV!=='server') return url;
+    if(/^\/API/.test(url)){
+        return 'http://192.168.20.151:9000'+url
+    }
+    return url
+}
+http.interceptors.request.use(function (config) {
+    config.url=getRequestUrl(config.url)
+    return config;
+});
 http.interceptors.response.use((response) => {
   return response.data;
 })

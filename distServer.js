@@ -23,3 +23,6 @@ Loadable.preloadAll().then(() => {
         console.log("成功启动：localhost:" + PORT)
     })
 });
+process.on('uncaughtException', function (err) {
+    console.log(err)
+})
