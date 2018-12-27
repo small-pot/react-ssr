@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { DatePicker } from 'antd';
 import moment from '#/moment'
+import createHashHistory from 'history/createHashHistory';
 
 class Hello extends React.Component{
     static propTypes={
@@ -21,6 +22,7 @@ class Hello extends React.Component{
             url:'/getTime.htm'
         }).then(res=>{
         })
+        this.history=createHashHistory()
     }
     timeChange(moment,time){
         this.props.dispatch({type:'getTime',time})
@@ -30,6 +32,10 @@ class Hello extends React.Component{
             <img src={require('../../img/gg.jpg')} alt=""/>
             <div onClick={()=>console.log(8888)}>time:{this.props.time}</div>
             <DatePicker onChange={(moment,val)=>this.timeChange(moment,val)} value={moment(this.props.time)}/>
+            <div className='btn-box'>
+                <a onClick={()=>this.history.push('/abc')}>to abc</a>
+                <a onClick={()=>this.history.push('/ttt')}>to ttt</a>
+            </div>
             <Hash component={
                 <Switch>
                     <Route path={'/abc'} component={()=><div>我是abc组件</div>} />
