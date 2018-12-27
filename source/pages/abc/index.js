@@ -1,16 +1,19 @@
 import React from 'react'
 import './abc.less'
-import http from '../../utils/http'
+import http from '#/http'
 import { HashRouter,Switch, Route } from "react-router-dom";
 import Hash from '../../components/common/Hash'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { DatePicker } from 'antd';
+import moment from '#/moment'
 
 class Hello extends React.Component{
+    static propTypes={
+        time:PropTypes.string
+    }
     constructor(props){
         super(props)
-        console.log('hello')
     }
     componentDidMount(){
         http({
@@ -19,14 +22,14 @@ class Hello extends React.Component{
         }).then(res=>{
         })
     }
-    timeChange(val){
-        console.log(val)
+    timeChange(moment,time){
+        this.props.dispatch({type:'getTime',time})
     }
     render(){
-        return <div style={{color:'red'}}>
+        return <div className='abc'>
             <img src={require('../../img/gg.jpg')} alt=""/>
-            <div>time:{new Date(this.props.abc).toLocaleDateString()}</div>
-            <DatePicker onChange={val=>this.timeChange(val)}/>
+            <div onClick={()=>console.log(8888)}>time:{this.props.time}</div>
+            <DatePicker onChange={(moment,val)=>this.timeChange(moment,val)} value={moment(this.props.time)}/>
             <Hash component={
                 <Switch>
                     <Route path={'/abc'} component={()=><div>我是abc组件</div>} />
@@ -37,5 +40,7 @@ class Hello extends React.Component{
     }
 }
 export default connect(state=>{
-    return state
+    return {
+        time:state.time
+    }
 })(Hello)

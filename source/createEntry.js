@@ -4,7 +4,7 @@ import createStore from "./store/createStore";
 import getReducer from './store/getReducer'
 
 export default function (pathName,App,initState) {
-    const reducer=routerConfig[pathName]&&routerConfig[pathName].reducer
+    const reducer=routerConfig[pathName]&&routerConfig[pathName].reducer||{}
     // let Entry;
     // if(getReducer){
     //     Entry=getReducer((loaded)=>{
@@ -15,6 +15,6 @@ export default function (pathName,App,initState) {
     //     const store=createStore({},{txt:123456})
     //     Entry=()=><App store={store} />
     // }
-    const store=createStore({[routerConfig[pathName].name]:getReducer(reducer)}||{},initState)
+    const store=createStore(reducer,initState)
     return ()=><App store={store} />
 }

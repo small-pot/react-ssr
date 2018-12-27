@@ -23,7 +23,8 @@ export default async function (req,res,tpl) {
     }
     let data={};
     if(item.getSyncDate){
-        data[item.name]=await item.getSyncDate(req)
+        data=await item.getSyncDate(req)
+        console.log(data)
     }
     let modules = [];
     const html = renderToStaticMarkup(
@@ -31,16 +32,17 @@ export default async function (req,res,tpl) {
             <App location={req.url} context={{}} initState={data}/>
         </Loadable.Capture>
     )
-    console.log(html)
     const {js,css}=getResource(modules)
+    const init=`<script>window.INITSTATE=${JSON.stringify(data)}</script>`
+    console.log(html)
     const result=tpl
         .replace('{{title}}',item.title)
         .replace('{{description}}',item.description)
         .replace('{{keywords}}',item.keywords)
-        .replace('</head>',css+'</head>')
+        .replace('</head>',css+init+'</head>')
         .replace('<!--react-entry-->',html)
-        .replace('</body>',js+'</body>')
+        .replace('</body>',js+'<script>window.main()</script></body>')
     //res.send(tpl(item, html,JSON.stringify(data),jsStr+js, cssStr+css))
-    console.log(result)
+    //console.log(result)
     res.send(result)
 }

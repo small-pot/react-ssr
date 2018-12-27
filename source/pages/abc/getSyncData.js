@@ -1,10 +1,11 @@
 //server端请求
 import serverHttp from 'SERVERHTTP'
+import {timeFormat} from "../../utils/tools";
 
-export default function (req) {
-    return serverHttp(req,{
+export default async function (req) {
+    let data=await serverHttp(req,{
         method:'get',
         url:'/API/Attendance/getTime.htm'
     })
-
+    return {time:timeFormat(data,'YYYY-MM-DD')}
 }

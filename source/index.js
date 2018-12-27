@@ -21,7 +21,7 @@ window.main=()=>{
     Loadable.preloadReady().then(() => {
         ReactDom.render(
             <Entry />,
-            document.body
+            document.getElementById('root')
         )
     });
 }

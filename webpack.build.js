@@ -4,7 +4,6 @@ const config=require('./webpack.base.config')
 const merge = require('webpack-merge')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CopyWebpackPlugin=require('copy-webpack-plugin')
-const ManifestPlugin=require('webpack-manifest-plugin')
 const babelConfig=require('./tools/clentBabelConfig')
 const ora = require('ora');
 const buildConfig=merge(config,{
@@ -45,7 +44,6 @@ const buildConfig=merge(config,{
             {from: __dirname + '/source/static',
                 to:__dirname + '/dist/static'}
                 ]),
-        new ManifestPlugin()
     ]
 })
 const spinner = ora('building for production...')

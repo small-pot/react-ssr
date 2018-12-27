@@ -33,7 +33,7 @@ module.exports = {
         alias: {
             '@': path.resolve(__dirname, 'source'),
             'SERVERHTTP': path.resolve(__dirname, 'tools/serverHttp.js'),
-            "HTTP": path.resolve(__dirname, 'source/utils/http')
+            "#":path.resolve(__dirname, 'source/utils'),
         }
     },
     module: {

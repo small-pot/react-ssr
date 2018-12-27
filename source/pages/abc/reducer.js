@@ -1,5 +1,8 @@
 export default {
-    save(state={txt:'aaaaaa'},action){
-        return state
+    getTime(state={time:Date.now()},action){
+        return {
+            ...state,
+            time:action.time
+        }
     }
 }
