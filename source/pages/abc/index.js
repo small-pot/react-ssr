@@ -2,7 +2,7 @@ import React from 'react'
 import './abc.less'
 import http from '#/http'
 import { HashRouter,Switch, Route } from "react-router-dom";
-import Hash from '../../components/common/Hash'
+import Hash from '../../components/Hash'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { DatePicker } from 'antd';
@@ -15,13 +15,16 @@ class Hello extends React.Component{
     }
     constructor(props){
         super(props)
+        if(process.env.NODE_ENV!=='server'){
+            http({
+                method:'get',
+                url:'/getTime.htm'
+            }).then(res=>{
+                console.log(88888,res)
+            })
+        }
     }
     componentDidMount(){
-        http({
-            method:'get',
-            url:'/getTime.htm'
-        }).then(res=>{
-        })
         this.history=createHashHistory()
     }
     timeChange(moment,time){
@@ -36,12 +39,12 @@ class Hello extends React.Component{
                 <a onClick={()=>this.history.push('/abc')}>to abc</a>
                 <a onClick={()=>this.history.push('/ttt')}>to ttt</a>
             </div>
-            <Hash component={
+            <Hash>
                 <Switch>
                     <Route path={'/abc'} component={()=><div>我是abc组件</div>} />
                     <Route path={'/ttt'} component={()=><div>我是ttt组件</div>} />
                 </Switch>
-                }/>
+            </Hash>
         </div>
     }
 }
